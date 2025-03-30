@@ -1,8 +1,15 @@
 
 import React, { useState, useEffect } from 'react';
-import { MapPin, TrendingUp, Lightbulb } from 'lucide-react';
+import { MapPin, TrendingUp, Lightbulb, Download, ExternalLink } from 'lucide-react';
 import { statesData, getLightPollutionColor, getLightPollutionLevelText, StateData } from '../data/indiaLightPollutionData';
 import { Card, CardHeader, CardTitle, CardContent } from './ui/card';
+import { Button } from './ui/button';
+import { 
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from './ui/tooltip';
 
 const IndiaMap: React.FC = () => {
   const [selectedState, setSelectedState] = useState<StateData | null>(null);
@@ -40,7 +47,7 @@ const IndiaMap: React.FC = () => {
 
   const { darkest, brightest } = getExtremeLightPollutionStates();
 
-  // Updated state coordinates mapped for pin placement based on political map
+  // State coordinates mapped for pin placement based on political map
   const stateCoordinates: Record<string, { x: number, y: number }> = {
     AP: { x: 45, y: 63 },  // Andhra Pradesh
     AR: { x: 66, y: 35 },  // Arunachal Pradesh
@@ -83,82 +90,8 @@ const IndiaMap: React.FC = () => {
 
   return (
     <div className="w-full space-y-6">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {/* Box 1: Darkest and Brightest Regions */}
-        <Card className="bg-gray-800 border-gray-700">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-lg flex items-center gap-2">
-              <MapPin className="h-5 w-5" />
-              <span>Dark vs Bright Regions</span>
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-3">
-              <div>
-                <h4 className="text-sm font-medium text-gray-300 mb-1">Darkest Regions (Best for Observatories)</h4>
-                <ul className="text-sm pl-5 list-disc">
-                  {darkest.map(state => (
-                    <li key={state.id} className="text-white">
-                      {state.name} - {getLightPollutionLevelText(state.lightPollutionIndex)}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <h4 className="text-sm font-medium text-gray-300 mb-1">Brightest Regions (High Pollution)</h4>
-                <ul className="text-sm pl-5 list-disc">
-                  {brightest.map(state => (
-                    <li key={state.id} className="text-white">
-                      {state.name} - {getLightPollutionLevelText(state.lightPollutionIndex)}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-        
-        {/* Box 2: Trend Analysis */}
-        <Card className="bg-gray-800 border-gray-700">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-lg flex items-center gap-2">
-              <TrendingUp className="h-5 w-5" />
-              <span>Trend Analysis</span>
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <h4 className="text-sm font-medium text-gray-300 mb-2">Changes Over Last Decade</h4>
-            <ul className="text-sm pl-5 list-disc space-y-2">
-              <li className="text-white">Urban areas saw 150-250% increase in light pollution</li>
-              <li className="text-white">Rural areas experienced 40-100% increase</li>
-              <li className="text-white">Industrial corridors show the fastest growth rate</li>
-              <li className="text-white">Coastal regions face 120-180% rise in artificial light</li>
-            </ul>
-          </CardContent>
-        </Card>
-        
-        {/* Box 3: Solutions */}
-        <Card className="bg-gray-800 border-gray-700">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-lg flex items-center gap-2">
-              <Lightbulb className="h-5 w-5" />
-              <span>Sustainable Solutions</span>
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <h4 className="text-sm font-medium text-gray-300 mb-2">Proposed Outdoor Lighting Policies</h4>
-            <ul className="text-sm pl-5 list-disc space-y-2">
-              <li className="text-white">LED transition with warm color temperatures (≤2700K)</li>
-              <li className="text-white">Full cut-off fixtures to direct light downward</li>
-              <li className="text-white">Motion sensors for adaptive lighting systems</li>
-              <li className="text-white">Dark sky ordinances in rural and protected areas</li>
-              <li className="text-white">Time-based dimming schedules for urban centers</li>
-            </ul>
-          </CardContent>
-        </Card>
-      </div>
-
-      <div className="w-full flex flex-col lg:flex-row gap-6">
+      {/* Map and State Info Section */}
+      <div className="w-full flex flex-col lg:flex-row gap-6 mb-6">
         {/* Map Container */}
         <div className="relative w-full lg:w-2/3 h-[500px] md:h-[600px] bg-gray-950 rounded-lg overflow-hidden border border-gray-800">
           {/* India Outline Image */}
@@ -298,6 +231,103 @@ const IndiaMap: React.FC = () => {
             </div>
           )}
         </div>
+      </div>
+
+      {/* Download Report Button */}
+      <div className="mb-6 flex justify-center">
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button 
+                variant="default" 
+                className="bg-primary hover:bg-primary/90 text-white font-medium"
+                onClick={() => window.open("https://drive.google.com/drive/folders/1lMqwKyCzH38K2yWkwcfW_K2B9TO1mJC_?usp=sharing", "_blank")}
+              >
+                <Download className="mr-2 h-4 w-4" />
+                Download Detailed Report
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent className="max-w-md text-sm">
+              A report showcasing insights, patterns, and recommendations with proper statistical proof of how light pollution is being affected.
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+      </div>
+
+      {/* Three Information Boxes Below */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {/* Box 1: Darkest and Brightest Regions */}
+        <Card className="bg-gray-800 border-gray-700">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-lg flex items-center gap-2">
+              <MapPin className="h-5 w-5" />
+              <span>Dark vs Bright Regions</span>
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-3">
+              <div>
+                <h4 className="text-sm font-medium text-gray-300 mb-1">Darkest Regions (Best for Observatories)</h4>
+                <ul className="text-sm pl-5 list-disc">
+                  {darkest.map(state => (
+                    <li key={state.id} className="text-white">
+                      {state.name} - {getLightPollutionLevelText(state.lightPollutionIndex)}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <h4 className="text-sm font-medium text-gray-300 mb-1">Brightest Regions (High Pollution)</h4>
+                <ul className="text-sm pl-5 list-disc">
+                  {brightest.map(state => (
+                    <li key={state.id} className="text-white">
+                      {state.name} - {getLightPollutionLevelText(state.lightPollutionIndex)}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+        
+        {/* Box 2: Trend Analysis */}
+        <Card className="bg-gray-800 border-gray-700">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-lg flex items-center gap-2">
+              <TrendingUp className="h-5 w-5" />
+              <span>Trend Analysis</span>
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <h4 className="text-sm font-medium text-gray-300 mb-2">Changes Over Last Decade</h4>
+            <ul className="text-sm pl-5 list-disc space-y-2">
+              <li className="text-white">Urban areas saw 150-250% increase in light pollution</li>
+              <li className="text-white">Rural areas experienced 40-100% increase</li>
+              <li className="text-white">Industrial corridors show the fastest growth rate</li>
+              <li className="text-white">Coastal regions face 120-180% rise in artificial light</li>
+            </ul>
+          </CardContent>
+        </Card>
+        
+        {/* Box 3: Solutions */}
+        <Card className="bg-gray-800 border-gray-700">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-lg flex items-center gap-2">
+              <Lightbulb className="h-5 w-5" />
+              <span>Sustainable Solutions</span>
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <h4 className="text-sm font-medium text-gray-300 mb-2">Proposed Outdoor Lighting Policies</h4>
+            <ul className="text-sm pl-5 list-disc space-y-2">
+              <li className="text-white">LED transition with warm color temperatures (≤2700K)</li>
+              <li className="text-white">Full cut-off fixtures to direct light downward</li>
+              <li className="text-white">Motion sensors for adaptive lighting systems</li>
+              <li className="text-white">Dark sky ordinances in rural and protected areas</li>
+              <li className="text-white">Time-based dimming schedules for urban centers</li>
+            </ul>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
