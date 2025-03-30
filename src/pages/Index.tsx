@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Info } from 'lucide-react';
+import { Info, ExternalLink } from 'lucide-react';
 import IndiaMap from '../components/IndiaMap';
 
 const Index = () => {
