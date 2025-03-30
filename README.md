@@ -22,11 +22,10 @@ This project aims to visualize light pollution levels across India using an inte
 Ensure you have **Node.js** and **npm/yarn** installed.  
 
 #### Setup  
-```
+```sh
 After cloning the repository and cd <repository-name>
 # Step 1: Install the necessary dependencies.
 npm i
 
 # Step 2: Start the development server with auto-reloading and an instant preview.
 npm run dev
-```
