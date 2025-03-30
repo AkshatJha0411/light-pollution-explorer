@@ -13,43 +13,43 @@ const IndiaMap: React.FC = () => {
 
   // Updated state coordinates mapped for pin placement based on political map
   const stateCoordinates: Record<string, { x: number, y: number }> = {
-    AP: { x: 48, y: 71 },  // Andhra Pradesh
-    AR: { x: 77, y: 33 },  // Arunachal Pradesh
-    AS: { x: 74, y: 38 },  // Assam
-    BR: { x: 60, y: 45 },  // Bihar
-    CG: { x: 52, y: 55 },  // Chhattisgarh
-    GA: { x: 32, y: 69 },  // Goa
-    GJ: { x: 28, y: 55 },  // Gujarat
+    AP: { x: 45, y: 63 },  // Andhra Pradesh
+    AR: { x: 66, y: 35 },  // Arunachal Pradesh
+    AS: { x: 64, y: 40 },  // Assam
+    BR: { x: 53, y: 43 },  // Bihar
+    CG: { x: 48, y: 53 },  // Chhattisgarh
+    GA: { x: 37, y: 60 },  // Goa
+    GJ: { x: 35, y: 48 },  // Gujarat
     HR: { x: 40, y: 36 },  // Haryana
-    HP: { x: 39, y: 28 },  // Himachal Pradesh
-    JH: { x: 59, y: 51 },  // Jharkhand
-    KA: { x: 38, y: 72 },  // Karnataka
-    KL: { x: 37, y: 84 },  // Kerala
-    MP: { x: 45, y: 53 },  // Madhya Pradesh
-    MH: { x: 40, y: 64 },  // Maharashtra
-    MN: { x: 77, y: 44 },  // Manipur
-    ML: { x: 70, y: 42 },  // Meghalaya
-    MZ: { x: 75, y: 47 },  // Mizoram
-    NL: { x: 76, y: 40 },  // Nagaland
-    OR: { x: 59, y: 58 },  // Odisha
-    PB: { x: 36, y: 30 },  // Punjab
-    RJ: { x: 35, y: 43 },  // Rajasthan
-    SK: { x: 67, y: 36 },  // Sikkim
-    TN: { x: 45, y: 82 },  // Tamil Nadu
-    TS: { x: 47, y: 65 },  // Telangana
-    TR: { x: 72, y: 45 },  // Tripura
-    UP: { x: 50, y: 42 },  // Uttar Pradesh
+    HP: { x: 43, y: 29 },  // Himachal Pradesh
+    JH: { x: 52, y: 48 },  // Jharkhand
+    KA: { x: 42, y: 65 },  // Karnataka
+    KL: { x: 41, y: 70 },  // Kerala
+    MP: { x: 45, y: 48 },  // Madhya Pradesh
+    MH: { x: 41, y: 55 },  // Maharashtra
+    MN: { x: 65, y: 45 },  // Manipur
+    ML: { x: 61, y: 42 },  // Meghalaya
+    MZ: { x: 63, y: 47 },  // Mizoram
+    NL: { x: 66, y: 41 },  // Nagaland
+    OR: { x: 50, y: 57 },  // Odisha
+    PB: { x: 40, y: 31 },  // Punjab
+    RJ: { x: 35, y: 41 },  // Rajasthan
+    SK: { x: 57, y: 38 },  // Sikkim
+    TN: { x: 45, y: 72 },  // Tamil Nadu
+    TS: { x: 44, y: 60 },  // Telangana
+    TR: { x: 61, y: 46 },  // Tripura
+    UP: { x: 48, y: 42 },  // Uttar Pradesh
     UK: { x: 46, y: 32 },  // Uttarakhand
-    WB: { x: 65, y: 48 },  // West Bengal
+    WB: { x: 56, y: 48 },  // West Bengal
     DL: { x: 43, y: 38 },  // Delhi
-    JK: { x: 35, y: 20 },  // Jammu & Kashmir
-    LA: { x: 33, y: 15 },  // Ladakh
+    JK: { x: 40, y: 26 },  // Jammu & Kashmir
+    LA: { x: 43, y: 24 },  // Ladakh
     // Adjusting islands and union territories
-    AN: { x: 74, y: 81 },  // Andaman & Nicobar (moved inside the visible area)
-    CH: { x: 39, y: 32 },  // Chandigarh
-    DN: { x: 30, y: 61 },  // Dadra & Nagar Haveli and Daman & Diu
-    LD: { x: 31, y: 86 },  // Lakshadweep
-    PY: { x: 48, y: 79 },  // Puducherry
+    AN: { x: 66, y: 74 },  // Andaman & Nicobar (moved inside the visible area)
+    CH: { x: 42, y: 33 },  // Chandigarh
+    DN: { x: 37, y: 53 },  // Dadra & Nagar Haveli and Daman & Diu
+    LD: { x: 33, y: 72 },  // Lakshadweep
+    PY: { x: 46, y: 69 },  // Puducherry
   };
 
   return (
