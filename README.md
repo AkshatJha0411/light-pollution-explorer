@@ -17,6 +17,12 @@ This project aims to visualize light pollution levels across India using an inte
 - **Backend**: Node.js, Express.js  
 - **Data Handling**: JSON/GeoJSON (for mapping pollution levels)  
 
+### Detailed report and statewise graphs along with google colab (jupyter notebook) link 
+https://drive.google.com/drive/folders/1lMqwKyCzH38K2yWkwcfW_K2B9TO1mJC_?usp=sharing
+
+### Demo Video Link
+https://drive.google.com/drive/folders/1aDfObdjrqMU5yMTZPr2kl16n-PNjP5H7
+
 ### Installation & Setup  
 #### Prerequisites  
 Ensure you have **Node.js** and **npm/yarn** installed.  
